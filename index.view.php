@@ -56,7 +56,6 @@
                 <span class="name">
                   <?= $user->name ?>
                 </span>
-                <p><?= $user->designation ?></p>
                 <p><?= $user->email ?></p>
               </div>
               <div class="col s6" style="padding-top: 30px;">

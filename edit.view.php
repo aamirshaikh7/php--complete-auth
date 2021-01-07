@@ -16,15 +16,10 @@
         <div class="row">
             <form class="col s12" method="POST">
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input value="<?= $user->name ?>" name="name" id="name" type="text" class="validate">
                         <label for="name">Name</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">work</i>
-                        <input value="<?= $user->designation ?>" name="designation" id="designation" type="text" class="validate">
-                        <label for="designation">Designation</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail</i>

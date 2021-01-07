@@ -19,16 +19,15 @@ class QueryBuilder {
 
     public function post($table) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if(isset($_POST['name']) && isset($_POST['designation']) && isset($_POST['email'])) {
+            if(isset($_POST['name']) && isset($_POST['email'])) {
                 $name = $_POST['name'];
-                $designation = $_POST['designation'];
                 $email = $_POST['email'];
     
-                $sql = "INSERT INTO ${table}(name, designation, email) VALUES(:name, :designation, :email)";
+                $sql = "INSERT INTO ${table}(name, email) VALUES(:name, :email)";
     
                 $statement = $this->pdo->prepare($sql);
     
-                $isInserted = $statement->execute([':name' => $name, ':designation' => $designation, ':email' => $email]);
+                $isInserted = $statement->execute([':name' => $name, ':email' => $email]);
     
                 if($isInserted) {
                     header('Location: index.php');
@@ -47,16 +46,15 @@ class QueryBuilder {
         $user = $statement->fetch(PDO::FETCH_OBJ);
         
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if(isset($_POST['name']) && isset($_POST['designation']) && isset($_POST['email'])) {
+            if(isset($_POST['name']) && isset($_POST['email'])) {
                 $name = $_POST['name'];
-                $designation = $_POST['designation'];
                 $email = $_POST['email'];
     
-                $sql = "UPDATE ${table} SET name=:name, designation=:designation, email=:email WHERE id=:id";
+                $sql = "UPDATE ${table} SET name=:name, email=:email WHERE id=:id";
     
                 $statement = $this->pdo->prepare($sql);
     
-                $isInserted = $statement->execute([':name' => $name, ':designation' => $designation, ':email' => $email, ':id' => $id]);
+                $isInserted = $statement->execute([':name' => $name, ':email' => $email, ':id' => $id]);
     
                 if($isInserted) {
                     header('Location: index.php');
@@ -78,4 +76,12 @@ class QueryBuilder {
             header('Location: index.php#get-started');
         }
     }
+    
+    // public function signup() {
+    //     if(isset($_POST['submit'])) {
+    //         $email = $_POST['email'];
+    //         $password = $_POST['password'];
+    //         $repeat = $_POST['repeat'];
+    //     }
+    // }
 }
