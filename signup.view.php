@@ -5,7 +5,7 @@
     
     $builder = new QueryBuilder(Connection::make());
     
-    // $builder->signup();
+    $builder->signup();
 ?>
     <div class="container" id="get-started">
         <div class="section">

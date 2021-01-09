@@ -73,15 +73,33 @@ class QueryBuilder {
         $isDeleted = $statement->execute([':id' => $id]);
 
         if($isDeleted) {
-            header('Location: index.php#get-started');
+            header('Location: index.php');
         }
     }
     
-    // public function signup() {
-    //     if(isset($_POST['submit'])) {
-    //         $email = $_POST['email'];
-    //         $password = $_POST['password'];
-    //         $repeat = $_POST['repeat'];
-    //     }
-    // }
+    public function signup() {
+        if(isset($_POST['submit'])) {
+            $message = [];
+
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+            $repeat = htmlspecialchars($_POST['repeat']);
+            
+            if(empty($email) && empty($password) && empty($repeat)) {
+                $message[] = 'Please fill-in all the fields';
+                var_dump($message);
+                exit();
+            } elseif(strlen($password) < 6) {
+                $message[] = 'Password must be > 6';
+                var_dump($message);
+                exit();
+            } elseif($password !== $repeat) {
+                $message[] = 'Password did not match';
+                var_dump($message);
+                exit();
+            } else {
+                echo 'passed';
+            }
+        }
+    }
 }

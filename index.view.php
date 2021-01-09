@@ -46,7 +46,7 @@
   <div class="container" id="get-started">
     <div class="section">
 
-      <ul class="collection">
+      <ul class="">
 
         <?php foreach($users as $user) : ?>
           <div class="collection-item avatar">

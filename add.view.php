@@ -20,12 +20,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        <input name="name" id="name" type="text" class="validate">
+                        <input name="name" id="name" type="text" class="validate" required>
                         <label for="name">Name</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail</i>
-                        <input name="email" id="email" type="email" class="validate">
+                        <input name="email" id="email" type="email" class="validate" required>
                         <label for="email">Email</label>
                     </div>
                     <div class="col s12">

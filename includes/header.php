@@ -18,7 +18,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo left">PHP CRUD</a>
       <div class="row right">
         <a href="./add.view.php" class="btn-large waves-effect waves-light blue">Add User</a>
-        <a href="./login.view.php" class="btn-large waves-effect waves-light blue">Login</a>
+        <a href="./signin.view.php" class="btn-large waves-effect waves-light blue">Signin</a>
         <a href="./signup.view.php" class="btn-large waves-effect waves-light blue">Signup</a>
         <a href="#" class="btn-large waves-effect blue">Signout</a>
       </div>
