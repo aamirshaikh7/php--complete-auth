@@ -17,10 +17,10 @@
   <nav class="light-red lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo left">PHP CRUD</a>
       <div class="row right">
-        <a href="./add.view.php" class="btn-large waves-effect waves-light blue">Add User</a>
-        <a href="./signin.view.php" class="btn-large waves-effect waves-light blue">Signin</a>
+        <a href="./add.view.php" class="btn-large waves-effect waves-light blue" style="margin-right: 10px;">Add User</a>
+        <a href="./signin.view.php" class="btn-large waves-effect waves-light blue" style="margin-right: 10px;">Signin</a>
         <a href="./signup.view.php" class="btn-large waves-effect waves-light blue">Signup</a>
-        <a href="#" class="btn-large waves-effect blue">Signout</a>
+        <!-- <a href="#" class="btn-large waves-effect blue">Signout</a> -->
       </div>
     </div>
   </nav>
