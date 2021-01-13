@@ -5,7 +5,7 @@
     
     $builder = new QueryBuilder(Connection::make());
     
-    $builder->signup();
+    $builder->signup('auth');
 ?>
     <div class="container" id="get-started">
         <div class="section">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input name="email" id="email" type="email" class="validate">
+                        <input name="email" id="email" type="text" class="validate">
                         <label for="email">Email</label>
                     </div>
                     <div class="input-field col s12">

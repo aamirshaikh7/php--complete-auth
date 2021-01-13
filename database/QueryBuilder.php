@@ -77,28 +77,37 @@ class QueryBuilder {
         }
     }
     
-    public function signup() {
+    public function signup($table) {
         if(isset($_POST['submit'])) {
             $message = [];
 
+            $name = htmlspecialchars($_POST['name']);
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
             $repeat = htmlspecialchars($_POST['repeat']);
             
-            if(empty($email) && empty($password) && empty($repeat)) {
+            if(empty($name) && empty($email) && empty($password) && empty($repeat)) {
                 $message[] = 'Please fill-in all the fields';
                 var_dump($message);
-                exit();
             } elseif(strlen($password) < 6) {
                 $message[] = 'Password must be > 6';
                 var_dump($message);
-                exit();
             } elseif($password !== $repeat) {
                 $message[] = 'Password did not match';
                 var_dump($message);
-                exit();
+            } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $message[] = 'Email is not valid';
+                var_dump($message);
             } else {
-                echo 'passed';
+                $sql = "INSERT INTO ${table}(name, email, password) VALUES (:name, :email, :password)";
+            
+                $statement = $this->pdo->prepare($sql);
+
+                $isInserted = $statement->execute([':name' => $name, ':email' => $email, ':password' => $password]);
+            
+                if($isInserted) {
+                    header('Location: signin.view.php');
+                }
             }
         }
     }
