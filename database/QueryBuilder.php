@@ -99,6 +99,8 @@ class QueryBuilder {
                 $message[] = 'Email is not valid';
                 var_dump($message);
             } else {
+                $password = password_hash($password, PASSWORD_BCRYPT);
+                
                 $sql = "INSERT INTO ${table}(name, email, password) VALUES (:name, :email, :password)";
             
                 $statement = $this->pdo->prepare($sql);
