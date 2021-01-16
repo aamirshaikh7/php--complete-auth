@@ -11,6 +11,19 @@
         <div class="section">
 
         <div class="row">
+        
+            <?php if(isset($_GET['message'])) : ?>
+                <div class="col s12">
+                    <div class="card red darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">
+                                <?= $_GET['message']; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <form class="col s12" method="POST">
                 <div class="row">
                     <div class="input-field col s12">

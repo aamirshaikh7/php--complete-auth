@@ -79,26 +79,45 @@ class QueryBuilder {
     
     public function signup($table) {
         if(isset($_POST['submit'])) {
-            $message = [];
-
+            $message = '';
+            
             $name = htmlspecialchars($_POST['name']);
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
             $repeat = htmlspecialchars($_POST['repeat']);
             
+            $fieldsValid = $passwordValid = $passwordMatch = $emailvalid = false;
+
             if(empty($name) && empty($email) && empty($password) && empty($repeat)) {
-                $message[] = 'Please fill-in all the fields';
-                var_dump($message);
-            } elseif(strlen($password) < 6) {
-                $message[] = 'Password must be > 6';
-                var_dump($message);
-            } elseif($password !== $repeat) {
-                $message[] = 'Password did not match';
-                var_dump($message);
-            } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $message[] = 'Email is not valid';
-                var_dump($message);
+                $message .= 'Please fill-in all the fields ';
+                
             } else {
+                $fieldsValid = true;
+            }
+            
+            if(strlen($password) < 6) {
+                $message .= 'Password must be > 6 ';
+                
+            } else {
+                $passwordValid = true;
+            }
+            
+            if($password !== $repeat) {
+                $message .= 'Password did not match ';
+                
+            } else {
+                $passwordMatch = true;
+            }
+            
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $message .= 'Email is not valid ';
+                
+            } else {
+                $emailvalid = true;
+            }
+            
+            
+            if($fieldsValid && $passwordValid && $passwordMatch && $emailvalid) {
                 $password = password_hash($password, PASSWORD_BCRYPT);
                 
                 $sql = "INSERT INTO ${table}(name, email, password) VALUES (:name, :email, :password)";
@@ -110,6 +129,8 @@ class QueryBuilder {
                 if($isInserted) {
                     header('Location: signin.view.php');
                 }
+            } else {
+                header('Location: signup.view.php?message=' . $message);
             }
         }
     }
