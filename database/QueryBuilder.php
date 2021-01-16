@@ -88,7 +88,7 @@ class QueryBuilder {
             
             $fieldsValid = $passwordValid = $passwordMatch = $emailvalid = false;
 
-            if(empty($name) && empty($email) && empty($password) && empty($repeat)) {
+            if(empty($name) || empty($email) || empty($password) || empty($repeat)) {
                 $message .= 'Please fill-in all the fields ';
                 
             } else {
@@ -131,6 +131,76 @@ class QueryBuilder {
                 }
             } else {
                 header('Location: signup.view.php?message=' . $message);
+            }
+        }
+    }
+
+    public function signin($table) {
+        if(isset($_POST['submit'])) {
+            $message = '';
+
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+
+            $fieldsValid = $passwordValid = $emailValid = false;
+
+            if(empty($email) || empty($password)) {
+                $message .= 'Please fill-in all the fields ';
+
+            } else {
+                $fieldsValid = true;
+            }
+
+            if(strlen($password) < 6) {
+                $message .= 'Password must be > 6 ';
+                
+            } else {
+                $passwordValid = true;
+            }
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $message .= 'Email is not valid ';
+                
+            } else {
+                $emailValid = true;
+            }
+
+            if($fieldsValid && $passwordValid && $emailValid) {
+                $sql = "SELECT * FROM ${table} WHERE email=:email";
+            
+                $statement = $this->pdo->prepare($sql);
+
+                $statement->execute([':email' => $email]);
+            
+                $count = $statement->rowCount();
+
+                if($count > 0) {
+                    $_SESSION['username'] = $email;
+
+                    $assoc = $statement->fetch(PDO::FETCH_ASSOC);
+
+                    $encryptedPass = $assoc['password'];
+
+                    $verifyPass = password_verify($password, $encryptedPass);
+
+                    if($verifyPass) {
+                        $message = 'Login success';
+
+                        header('Location: index.php?message=' . $message);
+
+                    } else {
+                        $message = 'Invalid Password';
+
+                        header('Location: signin.view.php?message=' . $message);
+                    }
+
+                } else {
+                    $message = 'Invalid Email';
+
+                    header('Location: signin.view.php?message=' . $message);
+                }
+            } else {
+                header('Location: signin.view.php?message=' . $message);
             }
         }
     }
