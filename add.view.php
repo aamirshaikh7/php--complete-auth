@@ -4,6 +4,12 @@
     // if(user!loggedin) then
     // header("Location: login.view.php");
     // else
+
+    session_start(); 
+
+    if(!isset($_SESSION['email'])) {
+      header('Location: signin.view.php');
+    }
     
     require 'db_require.php';
     

@@ -1,8 +1,21 @@
 <?php include 'includes/header.php'; ?>
 
+  <?php 
+    session_start(); 
+
+    if(!isset($_SESSION['email'])) {
+      header('Location: signin.view.php');
+    }
+  ?>
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
+
+      <?php if(isset($_SESSION['email'])) : ?>
+        <h3 class="header center dark-text">Hello ! <strong><?php echo $_SESSION['email']; ?></strong></h3>
+      <?php endif; ?>
+      
       <h2 class="header center blue-text">Manage Users Efficiently !</h2>
       <div class="row center">
         <h5 class="header col s12 light">A modern responsive CRUD Application for Employee Management</h5>

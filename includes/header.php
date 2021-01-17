@@ -19,8 +19,8 @@
       <div class="row right">
         <a href="./add.view.php" class="btn-large waves-effect waves-light blue" style="margin-right: 10px;">Add User</a>
         <a href="./signin.view.php" class="btn-large waves-effect waves-light blue" style="margin-right: 10px;">Signin</a>
-        <a href="./signup.view.php" class="btn-large waves-effect waves-light blue">Signup</a>
-        <!-- <a href="#" class="btn-large waves-effect blue">Signout</a> -->
+        <a href="./signup.view.php" class="btn-large waves-effect waves-light blue" style="margin-right: 10px;">Signup</a>
+        <a href="./signout.php" class="btn-large waves-effect blue">Signout</a>
       </div>
     </div>
   </nav>

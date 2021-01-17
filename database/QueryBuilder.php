@@ -136,6 +136,8 @@ class QueryBuilder {
     }
 
     public function signin($table) {
+        session_start();
+
         if(isset($_POST['submit'])) {
             $message = '';
 
@@ -175,9 +177,9 @@ class QueryBuilder {
                 $count = $statement->rowCount();
 
                 if($count > 0) {
-                    $_SESSION['username'] = $email;
-
                     $assoc = $statement->fetch(PDO::FETCH_ASSOC);
+
+                    $_SESSION['email'] = $assoc['email'];
 
                     $encryptedPass = $assoc['password'];
 
